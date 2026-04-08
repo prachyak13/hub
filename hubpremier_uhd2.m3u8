@@ -3,4 +3,4 @@
 #EXT-X-ALLOW-CACHE:YES
 
 #EXT-X-STREAM-INF:BANDWIDTH=2200000,NAME="1"
-http://195.128.27.141:80/live/29635847216070086058/5jq68fox8okip6k08rbs/264407.m3u8
+http://main.light-ott.net:80/play/live.php?mac=00:1A:79:3A:93:FD&stream=1314088&extension=m3u8
