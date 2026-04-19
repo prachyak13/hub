@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Stream Player</title>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <meta charset="utf-8">
+    <title>HUB Player</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
     <style>
-        body { margin: 0; background: #000; overflow: hidden; }
-        video { width: 100vw; height: 100vh; background: #000; }
+        body { margin: 0; padding: 0; background-color: #000; overflow: hidden; }
+        #player { width: 100vw; height: 100vh; }
     </style>
 </head>
 <body>
-    <video id="video" controls autoplay crossorigin="anonymous"></video>
+    <div id="player"></div>
     <script>
-        var video = document.getElementById('video');
-        // ใช้ Proxy นำหน้าเพื่อปลดล็อกการบล็อกจาก Browser
+        // ลิงก์ของคุณ
         var rawUrl = 'https://raw.githubusercontent.com/prachyak13/hub/refs/heads/main/hubpremier1.m3u8';
-        var videoSrc = 'https://corsproxy.io/?' + encodeURIComponent(rawUrl);
         
-        if (Hls.isSupported()) {
-            var hls = new Hls();
-            hls.loadSource(videoSrc);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() { video.play(); });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = videoSrc;
-            video.addEventListener('loadedmetadata', function() { video.play(); });
-        }
+        var player = new Clappr.Player({
+            source: 'https://corsproxy.io/?' + encodeURIComponent(rawUrl),
+            parentId: "#player",
+            width: '100%',
+            height: '100%',
+            autoPlay: true,
+            mimeType: "application/x-mpegURL",
+            mediacontrol: {seekbar: "#ff0000", buttons: "#eee"},
+            preload: 'metadata'
+        });
     </script>
 </body>
 </html>
